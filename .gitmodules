@@ -1,0 +1,3 @@
+[submodule "delectable"]
+	path = delectable
+	url = https://github.com/JaneliaSciComp/delectable

@@ -135,7 +135,7 @@ def process_folder(leaf_script_path, root_input_folder_path, input_folder_path, 
 if __name__ == "__main__":
     this_script_path = os.path.realpath(__file__)
     this_folder_path = os.path.dirname(this_script_path)
-    leaf_script_path = os.path.join(this_folder_path, 'compress_video_and_delete_input_file.py')
+    leaf_script_path = os.path.join(this_folder_path, 'train_model_and_delete_input_folder.py')
 
     root_input_folder_path = os.path.abspath(sys.argv[1])
     root_output_folder_path = os.path.abspath(sys.argv[2])
