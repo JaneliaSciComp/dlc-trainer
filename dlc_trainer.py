@@ -4,7 +4,7 @@ import sys
 import os
 import subprocess
 import time
-import dlct
+import delectable.dlct as dlct
 
 
 def process_files_in_one_folder(leaf_script_path, root_input_folder_path, source_folder_path, names_of_source_files, output_folder_path, n_submitted) :
