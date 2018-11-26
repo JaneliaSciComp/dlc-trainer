@@ -1,0 +1,4 @@
+#! /bin/bash
+
+INPUT_FOLDER_PATH=/nrs/svoboda/cyvasse-drop
+OUTPUT_FOLDER_PATH=/nrs/svoboda/cyvasse-drop-output

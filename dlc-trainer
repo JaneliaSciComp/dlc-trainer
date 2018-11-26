@@ -1,0 +1,29 @@
+#! /bin/bash
+
+#echo "About to print the variable PATH in the cyvasse bash script:"
+#echo $PATH
+
+#echo "About source the LSF profile script"
+source /misc/lsf/conf/profile.lsf
+
+#echo "About to print the variable PATH in the cyvasse bash script:"
+#echo $PATH
+
+# Figure out path to the folder where this script lives
+THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+
+#echo "About to print the PATH environment variable in the cyvasse bash script:"
+#printenv PATH
+
+# Want created files, dirs to be group-writable
+umask u=rwx,g=rwx,o=  
+
+# cd into the proper folder
+cd ${THIS_DIR}
+
+# Source the lab-specific script
+source configuration
+
+# Actually run the main Python script
+# (Those folder variables are set in the configuration script)
+python3 cyvasse.py $INPUT_FOLDER_PATH $OUTPUT_FOLDER_PATH

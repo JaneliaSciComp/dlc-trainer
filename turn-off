@@ -1,0 +1,4 @@
+#! /bin/bash
+
+# Filter any lines containing '#CYVASSE' out of the crontab
+crontab -l | grep --invert-match "#CYVASSE" | crontab
