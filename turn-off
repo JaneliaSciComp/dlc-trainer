@@ -1,4 +1,4 @@
 #! /bin/bash
 
-# Filter any lines containing '#CYVASSE' out of the crontab
-crontab -l | grep --invert-match "#CYVASSE" | crontab
+# Filter any lines containing '#DLC_TRAINER' out of the crontab
+crontab -l | grep --invert-match "#DLC_TRAINER" | crontab

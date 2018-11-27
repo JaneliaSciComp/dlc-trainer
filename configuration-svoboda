@@ -1,4 +1,4 @@
 #! /bin/bash
 
-INPUT_FOLDER_PATH=/nrs/svoboda/cyvasse-drop
-OUTPUT_FOLDER_PATH=/nrs/svoboda/cyvasse-drop-output
+INPUT_FOLDER_PATH=/nrs/svoboda/dlc-trainer-drop
+OUTPUT_FOLDER_PATH=/nrs/svoboda/dlc-trainer-drop-output

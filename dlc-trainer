@@ -1,18 +1,18 @@
 #! /bin/bash
 
-#echo "About to print the variable PATH in the cyvasse bash script:"
+#echo "About to print the variable PATH in the dlc-trainer bash script:"
 #echo $PATH
 
 #echo "About source the LSF profile script"
 source /misc/lsf/conf/profile.lsf
 
-#echo "About to print the variable PATH in the cyvasse bash script:"
+#echo "About to print the variable PATH in the dlc-trainer bash script:"
 #echo $PATH
 
 # Figure out path to the folder where this script lives
 THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-#echo "About to print the PATH environment variable in the cyvasse bash script:"
+#echo "About to print the PATH environment variable in the dlc-trainer bash script:"
 #printenv PATH
 
 # Want created files, dirs to be group-writable
@@ -26,4 +26,4 @@ source configuration
 
 # Actually run the main Python script
 # (Those folder variables are set in the configuration script)
-python3 cyvasse.py $INPUT_FOLDER_PATH $OUTPUT_FOLDER_PATH
+python3 dlc_trainer.py $INPUT_FOLDER_PATH $OUTPUT_FOLDER_PATH
