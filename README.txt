@@ -4,8 +4,9 @@ This project is based on the DeepLabCut project:
 
 https://github.com/AlexEMG/DeepLabCut
 
-All the code under the dlc folder is the original DeepLabCut code, and
-therefore carries its own copyright and license (GPLv3).
+All the code under the dlc folder is the based on the original
+DeepLabCut code, and therefore carries its own copyright and license
+(GPLv3).
 
 This project implements a cron job that runs on
 login1.int.janelia.org.  It monitors a folder (usually named something
@@ -15,6 +16,9 @@ It outputs a "model folder" containing the model in a parallel
 location, typically named something like
 
     /something/something/dlc-trainer-drop-output .
+
+Note that each targets folder to be used for training must be in
+placed in the dlc-trainer-drop folder, not a subfolder of it.
 
 Before installing DLC Trainer, you should figure out what user the
 cronjob will run as, and then do the build while logged in as that
