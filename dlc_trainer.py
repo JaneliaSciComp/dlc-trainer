@@ -6,7 +6,6 @@ import subprocess
 import time
 import pathlib
 import shutil
-#import delectable.dlct as dlct
 
 
 def process_targets_folder(singularity_image_path, leaf_script_path, targets_folder_path, model_folder_path,
@@ -64,7 +63,8 @@ def process_targets_folder(singularity_image_path, leaf_script_path, targets_fol
                         '-q', 'gpu_any', 
                         '-n2', 
                         '-gpu', 'num=1',
-                        'singularity', 'exec', '-B', '/scratch',
+                        'singularity', 'exec', 
+                        '-B', '/scratch,/nrs',
                         '--nv', singularity_image_path, 
                         'python3', leaf_script_path, targets_folder_path, lock_file_path, model_folder_path]
         print('About to subprocess.call(): %s' % repr(command_list))

@@ -3,16 +3,14 @@
 import sys
 import os
 import shutil
-#import pathlib
-#import delectable.dlct as dlct
-from delectable.train_model import train_model
+import delectable
 
 
 def train_model_and_delete_input_folder(targets_folder_path,
                                         lock_file_path,
                                         model_folder_path):
     try:
-        train_model(targets_folder_path, model_folder_path)
+        delectable.train_model(targets_folder_path, model_folder_path)
     except Exception as e:
         # Remove the lock file
         if os.path.exists(lock_file_path) :
