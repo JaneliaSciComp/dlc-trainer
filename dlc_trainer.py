@@ -6,9 +6,10 @@ import subprocess
 import time
 import pathlib
 import shutil
+import delectable
+import dlct
 
-
-def process_targets_folder(singularity_image_path, leaf_script_path, targets_folder_path, model_folder_path,
+def process_targets_folder(singularity_image_path, leaf_script_path, mount_folder_path, targets_folder_path, model_folder_path,
                            n_submitted) :
     # Go training for each targets folder
     print("Going to do training for targets in %s" % targets_folder_path)
@@ -64,7 +65,8 @@ def process_targets_folder(singularity_image_path, leaf_script_path, targets_fol
                         '-n2', 
                         '-gpu', 'num=1',
                         'singularity', 'exec', 
-                        '-B', '/scratch,/nrs',
+                        '-B', '/scratch',
+                        '-B', mount_folder_path,
                         '--nv', singularity_image_path, 
                         'python3', leaf_script_path, targets_folder_path, lock_file_path, model_folder_path]
         print('About to subprocess.call(): %s' % repr(command_list))
@@ -84,7 +86,7 @@ def process_targets_folder(singularity_image_path, leaf_script_path, targets_fol
 # end of function
 
 
-def process_root_folder(singularity_image_path, leaf_script_path, input_folder_path, output_folder_path, n_submitted) :
+def process_root_folder(singularity_image_path, leaf_script_path, mount_folder_path, input_folder_path, output_folder_path, n_submitted) :
     # print something to show progress
     print("Processing root folder: %s" % input_folder_path)
 
@@ -114,6 +116,7 @@ def process_root_folder(singularity_image_path, leaf_script_path, input_folder_p
     for subfolder_name in names_of_subfolders:
         n_submitted = process_targets_folder(singularity_image_path, 
                                              leaf_script_path,
+                                             mount_folder_path,
                                              os.path.join(input_folder_path, subfolder_name),
                                              os.path.join(output_folder_path, subfolder_name),
                                              n_submitted)
@@ -134,9 +137,19 @@ if __name__ == "__main__":
 
     root_input_folder_path = os.path.abspath(sys.argv[1])
     root_output_folder_path = os.path.abspath(sys.argv[2])
+
+    # Get the path to mount explicitly in call to bsub.
+    # This heuristic works for several installs, but
+    # not clear how well it will generalize in the future...
+    # Using commonprefix instead of common path b/c this runs on login one, which is running SL 7,
+    # which runs Python 3.4, which doesn't yet support commonpath()
+    mount_folder_path = dlct.common_prefix_path(root_input_folder_path, root_output_folder_path)
+    print("mount_folder_path: %s" % mount_folder_path)
+
     n_submitted = 0
     n_submitted = process_root_folder(singularity_image_path,
-                                      leaf_script_path, 
+                                      leaf_script_path,
+                                      mount_folder_path,  
                                       root_input_folder_path, 
                                       root_output_folder_path,
                                       n_submitted)

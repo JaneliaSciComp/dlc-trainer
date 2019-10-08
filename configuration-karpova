@@ -1,0 +1,4 @@
+#! /bin/bash
+
+INPUT_FOLDER_PATH=/groups/karpova/karpovalab/dlc-trainer-drop
+OUTPUT_FOLDER_PATH=/groups/karpova/karpovalab/dlc-trainer-drop-output
