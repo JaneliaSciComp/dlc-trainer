@@ -1,4 +1,5 @@
 #! /bin/bash
 
+PI_LAST_NAME=svoboda
 INPUT_FOLDER_PATH=/nrs/svoboda/dlc-trainer-drop
 OUTPUT_FOLDER_PATH=/nrs/svoboda/dlc-trainer-drop-output

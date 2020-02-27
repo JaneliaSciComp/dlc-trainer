@@ -1,4 +1,5 @@
 #! /bin/bash
 
+PI_LAST_NAME=karpova
 INPUT_FOLDER_PATH=/groups/karpova/karpovalab/dlc-trainer-drop
 OUTPUT_FOLDER_PATH=/groups/karpova/karpovalab/dlc-trainer-drop-output

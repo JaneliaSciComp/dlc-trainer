@@ -49,10 +49,10 @@ def process_targets_folder(singularity_image_path, leaf_script_path, mount_folde
         pathlib.Path(lock_file_path).touch()
         if os.path.exists(model_folder_path) :
             shutil.rmtree(model_folder_path)
-        stdout_file_path = model_folder_path + '-training-stdout.txt'
-        stderr_file_path = model_folder_path + '-training-stderr.txt'
+        stdout_file_path = model_folder_path + '-training-out.txt'
+        #stderr_file_path = model_folder_path + '-training-stderr.txt'
         print("stdout_file_path: %s" % stdout_file_path)
-        print("stderr_file_path: %s" % stderr_file_path)
+        #print("stderr_file_path: %s" % stderr_file_path)
         #print("root_input_folder_path: %s" % root_input_folder_path)
         print("targets_folder_path: %s" % targets_folder_path)
         print("lock_file_path: %s"   % lock_file_path)
@@ -60,7 +60,7 @@ def process_targets_folder(singularity_image_path, leaf_script_path, mount_folde
         print("PATH: %s" % os.environ['PATH'])
         print("PWD: %s" % os.environ['PWD'])
         #bsub -o $2-training-stdout.txt -e $2-training-stderr.txt -q gpu_any -n2 -gpu "num=1" singularity exec -B /scratch --nv $PATH_OF_THIS_SCRIPT_FOLDER/dlc.simg python3 $PATH_OF_THIS_SCRIPT_FOLDER/train_model.py $1 $2
-        command_list = ['bsub', '-o', stdout_file_path, '-e', stderr_file_path, 
+        command_list = ['bsub', '-oo', stdout_file_path, '-eo', stdout_file_path, 
                         '-q', 'gpu_any', 
                         '-n2', 
                         '-gpu', 'num=1',
@@ -113,6 +113,7 @@ def process_root_folder(singularity_image_path, leaf_script_path, mount_folder_p
     #                   if os.path.isfile(os.path.join(input_folder_path, item))]
 
     # For each folder in names_of_subfolders, recurse
+    names_of_subfolders
     for subfolder_name in names_of_subfolders:
         n_submitted = process_targets_folder(singularity_image_path, 
                                              leaf_script_path,
