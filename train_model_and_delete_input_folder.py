@@ -9,15 +9,10 @@ import delectable
 def train_model_and_delete_input_folder(targets_folder_path,
                                         lock_file_path,
                                         model_folder_path):
-    try:
-        delectable.train_model(targets_folder_path, model_folder_path)
-    except Exception as e:
-        # Remove the lock file
-        if os.path.exists(lock_file_path) :
-            os.remove(lock_file_path)
-        raise e
+    delectable.train_model(targets_folder_path, model_folder_path)
 
-    # Remove the lock file
+    # Remove the lock file, but only if train_model() exits successfully
+    # This prevents endless re-running
     if os.path.exists(lock_file_path) :
         os.remove(lock_file_path)
 
