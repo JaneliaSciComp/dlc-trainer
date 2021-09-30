@@ -12,5 +12,5 @@ source configuration
 # crontab again
 {
 crontab -l | grep --invert-match \#DLC_TRAINER
-echo "0,5,10,15,20,25,30,35,40,45,50,55 * * * *     flock --nonblock '${INPUT_FOLDER_PATH}' --command '${THIS_DIR}/dlc-trainer >> /groups/${PI_LAST_NAME}/${PI_LAST_NAME}lab/users/taylora/dlc/service-logs/${PI_LAST_NAME}-dlc-trainer.log 2>&1'   #DLC_TRAINER"
+echo "0,5,10,15,20,25,30,35,40,45,50,55 * * * *     flock --nonblock '${INPUT_FOLDER_PATH}' --command '${THIS_DIR}/dlc-trainer >> {OUTPUT_FOLDER_PATH}/dlc-trainer.log 2>&1'   #DLC_TRAINER"
 } | crontab
